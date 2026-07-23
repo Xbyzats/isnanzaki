@@ -21,9 +21,9 @@ export default function Portfolio() {
   const [charIndex, setCharIndex] = useState(0);
 
   // --- EFFECTS ---
-  // 1. Booting Screen
+  // 1. Booting Screen (Dipercepat jadi 2.5 detik biar lebih snappy)
   useEffect(() => {
-    const timer = setTimeout(() => setIsBooting(false), 2800);
+    const timer = setTimeout(() => setIsBooting(false), 2500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -102,25 +102,33 @@ export default function Portfolio() {
         style={{ width: `${scrollProgress}%` }}
       ></div>
 
-      {/* --- SPLASH SCREEN --- */}
+      {/* --- SPLASH SCREEN (CLEAN & ELEGANT) --- */}
       <div 
-        className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#030303] transition-all duration-1000 ease-in-out ${
-          isBooting ? "opacity-100 visible" : "opacity-0 invisible scale-125"
+        className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#030303] transition-all duration-700 ease-in-out ${
+          isBooting ? "opacity-100 visible" : "opacity-0 invisible -translate-y-10"
         }`}
       >
-        <div className="relative flex items-center justify-center w-40 h-40 mb-10">
-          <div className="absolute inset-0 border-t-2 border-cyan-400 rounded-full animate-spin shadow-[0_0_30px_rgba(34,211,238,0.5)]"></div>
-          <div className="absolute inset-4 border-r-2 border-indigo-500 rounded-full animate-[spin_1s_reverse_infinite]"></div>
-          <div className="absolute inset-8 border-b-2 border-purple-500 rounded-full animate-[spin_2s_infinite]"></div>
-          <Cpu size={40} className="text-cyan-400 animate-pulse" />
+        <div className="flex flex-col items-center text-center">
+          {/* Nama dan Title */}
+          <h1 className="text-3xl md:text-5xl font-black tracking-[0.2em] text-white uppercase mb-3 drop-shadow-lg">
+            Isnan Zaki
+          </h1>
+          <p className="text-xs md:text-sm tracking-[0.4em] text-gray-500 font-mono mb-10 uppercase">
+            Software Engineer
+          </p>
+
+          {/* Indikator Status */}
+          <div className="flex items-center gap-3 bg-white/5 px-5 py-2.5 rounded-full border border-white/10 shadow-[0_0_15px_rgba(34,211,238,0.1)]">
+            {/* Titik indikator kelap-kelip cyan */}
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
+            </span>
+            <span className="text-xs text-cyan-400 font-mono tracking-wider">
+              Initiating Workspace...
+            </span>
+          </div>
         </div>
-        <h1 className="text-3xl font-black tracking-[0.4em] text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400 animate-pulse">
-          IZ.OS_BOOT
-        </h1>
-        <div className="w-64 h-1 bg-gray-800 mt-6 rounded-full overflow-hidden">
-          <div className="h-full bg-cyan-400 animate-[pulse_1s_ease-in-out_infinite] w-full origin-left scale-x-0 animate-[fillBar_2.5s_ease-in-out_forwards]"></div>
-        </div>
-        <style jsx>{`@keyframes fillBar { to { transform: scaleX(1); } }`}</style>
       </div>
 
       {/* --- NAVBAR --- */}
@@ -148,7 +156,7 @@ export default function Portfolio() {
 
         <div className="max-w-3xl relative z-10 mt-10 md:mt-0 reveal-on-scroll opacity-0 translate-y-20 transition-all duration-1000 ease-out">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-950/30 border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-8 uppercase tracking-widest backdrop-blur-md">
-            <Activity size={14} className="animate-pulse" /> Status: System Online
+            <Activity size={14} className="animate-pulse" /> Status: Ready for Deployment.
           </div>
           
           <h1 className="text-6xl md:text-8xl font-black mb-4 tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-300 to-gray-700 drop-shadow-2xl">
